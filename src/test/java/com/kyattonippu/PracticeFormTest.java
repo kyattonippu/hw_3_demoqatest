@@ -33,16 +33,16 @@ public class PracticeFormTest {
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("January");
         $(".react-datepicker__year-select").selectOption("1990");
-        $(".react-datepicker__day--001").click();
+        $(".react-datepicker__day--001:not(.react-datepicker__day--outside-month)").click();
         $("#subjectsInput").setValue("Biology").pressEnter();
-        $("[for='hobbies-checkbox-2']").click();
+        $("#hobbiesWrapper").$(byText("Reading")).click();
         $("#uploadPicture").uploadFromClasspath("testimage.jpg");
         $("#currentAddress").setValue("DC, Universe");
         $("#submit").scrollTo();
-        $(byText("Select State")).click();
-        $(byText("Rajasthan")).click();
-        $(byText("Select City")).click();
-        $(byText("Jaipur")).click();
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText("Rajasthan")).click();
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText("Jaipur")).click();
         $("#submit").click();
 
         $(".modal-dialog").should(appear);
@@ -57,7 +57,5 @@ public class PracticeFormTest {
                 text("Picture testimage.jpg"),
                 text("Address DC, Universe"),
                 text("State and City Rajasthan Jaipur"));
-
-        $("#closeLargeModal").click();
     }
 }
